@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:extensions="clr-namespace:BaseProject.Bibliotecas.Extensions"
+             xmlns:shared="clr-namespace:BaseProject.Views.Shared"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+             xmlns:youlibs="clr-namespace:BaseProject.Bibliotecas"
+             mc:Ignorable="d"
+             x:Class="BaseProject.Views.MenuPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource Key=White}"
+             Visual="Material">
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <shared:TopBarSecondaryView IconLeftCommand="{Binding Path=cmdVoltarHome}"
+                                            HasIconRight="False"
+                                            Title="Menu"/>
+                <ScrollView VerticalOptions="FillAndExpand" 
+                            Opacity="{Binding Path=IsBusy, Converter={StaticResource Key=loadingConverter}}">
+                    <StackLayout Spacing="18"
+                                 Padding="16,25,16,16">
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdVoltarHome}"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.home_line_gradient.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Início"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              IsVisible="{Binding Path=IsDevedor}"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdNavegar}"
+                              xe:Commands.TapParameter="MinhasDividas.MinhasDividasPage"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.coin_bag_line_gradient.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Minhas dívidas"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdNavegar}"
+                              xe:Commands.TapParameter="MeusCupons.MeusCuponsEnviadosPage"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.file_group_line_2.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Documentos enviados"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdNavegar}"
+                              xe:Commands.TapParameter="MeusCupons.MeusCuponsRecebidosPage"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.file_group_line_3.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Documentos recebidos"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              IsVisible="{Binding Path=IsDevedor}"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdAbrirModal}"
+                              xe:Commands.TapParameter="SimularQuitacao.SimularQuitacaoPage"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.dollar_line_gradient.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Simular quitação"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdAbrirModal}"
+                              xe:Commands.TapParameter="UploadCupom.UploadCupomPage"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.upload_cloud_line_gradient.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Upload de documentos"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdNavegar}"
+                              xe:Commands.TapParameter="Amigos.AmigosPage"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.users_line_gradient_2.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Amigos que eu ajudo"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdNavegar}"
+                              xe:Commands.TapParameter="Amigos.AmigosQueMeAjudam"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.users_line_gradient_3.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Amigos que me ajudam"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdNavegar}"
+                              xe:Commands.TapParameter="Amigos.IndicacoesAmigosPage"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.employee_line.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Indicações de amigos"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdNavegar}"
+                              xe:Commands.TapParameter="Perfil.PerfilPage"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.account_circle_secondary.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Perfil"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+
+                        <!--<Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdVoltar}"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.store_line_gradient.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Lojas credenciadas"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>-->
+
+                        <Label Text="SOBRE A BaseProject"
+                               VerticalOptions="Center"
+                               Margin="0,20,0,5"
+                               Style="{StaticResource Key=LabelBold14}"
+                               TextColor="{StaticResource Key=Black30}"/>
+
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdAbrirLink}"
+                              xe:Commands.TapParameter="{x:Static youlibs:Links.Sobre}"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.home_line_gradient.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Conheça a BaseProject"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdAbrirLink}"
+                              xe:Commands.TapParameter="{x:Static youlibs:Links.FAQ}"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.help_line_gradient.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="FAQ"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdAbrirTermosCondicoes}"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.clipboard_line.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Termos e condições"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              xe:TouchEffect.Color="{StaticResource Key=White}"
+                              xe:Commands.Tap="{Binding Path=cmdAbrirLink}"
+                              xe:Commands.TapParameter="{x:Static youlibs:Links.TragaSuaLoja}"
+                              ColumnDefinitions="Auto, *"
+                              ColumnSpacing="15">
+
+                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.store_line_gradient.png}"
+                                   WidthRequest="30"/>
+
+                            <Label Text="Traga a sua loja"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Style="{StaticResource Key=LabelBold16}"/>
+                        </Grid>
+                        <Button Text="Sair" 
+                                Command="{Binding Path=cmdSair}"
+                                Margin="0,20,0,0"
+                                Style="{StaticResource Key=ButtonPrimary}"/>
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+
+            <shared:LoadingView IsBusy="{Binding Path=IsBusy}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

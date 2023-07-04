@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:LoadingControl xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                         xmlns:controls="clr-namespace:BaseProject.Bibliotecas.Controls"
+                         mc:Ignorable="d"
+                         IsVisible="{Binding Path=IsBusy}"
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand"
+                         x:Class="BaseProject.Views.Shared.LoadingView"
+                         x:Name="_this">
+    <controls:LoadingControl.Content>
+        <Frame BindingContext="{x:Reference Name=_this}"
+               BackgroundColor="White" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" 
+               CornerRadius="10" 
+               BorderColor="LightGray"
+               Padding="30"
+               Style="{StaticResource Key=FrameDefault}">
+            <StackLayout>
+                <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                   Color="{StaticResource Key=PrimaryColor}"/>
+                <Label Text="Aguarde" 
+                       Style="{StaticResource Key=LabelRegular16}"
+                       TextColor="{StaticResource Key=Black}"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+        </Frame>
+    </controls:LoadingControl.Content>
+</controls:LoadingControl>

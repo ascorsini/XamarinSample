@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<popups:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:behaviors="clr-namespace:BaseProject.Bibliotecas.Behaviors"
+                  xmlns:controls="clr-namespace:BaseProject.Bibliotecas.Controls"
+                  xmlns:fonts="clr-namespace:BaseProject.Bibliotecas.Fonts"
+                  xmlns:shared="clr-namespace:BaseProject.Views.Shared"
+                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                  xmlns:popups="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  x:Class="BaseProject.Views.Shared.AlterarSenhaPage"
+                  Visual="Material"
+                  CloseWhenBackgroundIsClicked="True">
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <popups:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"
+                                   DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True"/>
+    </popups:PopupPage.Animation>
+
+    <popups:PopupPage.Content>
+        <Grid VerticalOptions="CenterAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Frame Padding="0"
+                   Margin="30,0"
+                   CornerRadius="10" 
+                   Opacity="{Binding Path=IsBusy, Converter={StaticResource Key=loadingConverter}}">
+                <Grid Padding="10"
+                      BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Alteração de Senha" 
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource Key=LabelBold18}"
+                           Margin="0,0,0,5"/>
+
+
+                    <Entry Placeholder="Nova Senha" 
+                           Grid.Row="1"
+                           Style="{StaticResource Key=EntryDefault}"
+                           Text="{Binding Path=Dados.Senha.Value}"
+                           IsPassword="true"
+                           ReturnType="Next">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                Command="{Binding Path=cmdValidar}"
+                                                                CommandParameter="{Binding Path=Dados.Senha}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Text="{Binding Path=Dados.Senha.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                           IsVisible="{Binding Path=Dados.Senha.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                           Grid.Row="2"
+                           Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+
+                    <Entry Placeholder="Confirme sua Senha"        
+                           Grid.Row="3"
+                           Style="{StaticResource Key=EntryDefault}"
+                           Text="{Binding Path=Dados.ConfirmarSenha.Value}"
+                           IsPassword="true"
+                           ReturnType="Done">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                Command="{Binding Path=cmdValidar}"
+                                                                CommandParameter="{Binding Path=Dados.ConfirmarSenha}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Text="{Binding Path=Dados.ConfirmarSenha.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                           IsVisible="{Binding Path=Dados.ConfirmarSenha.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                           Grid.Row="4"
+                           Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+
+                    <controls:CustomButton Text="Salvar"
+                                           Grid.Row="5"
+                                           Style="{StaticResource Key=ButtonPrimary}"      
+                                           Command="{Binding Path=cmdSalvar}"
+                                           Margin="0,20,0,0"/>
+                </Grid>
+            </Frame>
+
+            <shared:LoadingView IsBusy="{Binding Path=IsBusy}"/>
+        </Grid>
+    </popups:PopupPage.Content>
+</popups:PopupPage>

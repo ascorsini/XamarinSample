@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:EmptyControl xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                       xmlns:controls="clr-namespace:BaseProject.Bibliotecas.Controls"
+                       xmlns:fonts="clr-namespace:BaseProject.Bibliotecas.Fonts"
+                       mc:Ignorable="d"
+                       x:Class="BaseProject.Views.Shared.EmptyView"
+                       Padding="10"
+                       x:Name="_this">
+    
+    <controls:EmptyControl.Content>
+        <Frame BindingContext="{x:Reference Name=_this}"
+               BackgroundColor="{StaticResource Key=PrimaryColor}" 
+               CornerRadius="10" 
+               Padding="20"                            
+               HasShadow="False" 
+               Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Text="{Binding Source={x:Static Member=fonts:FontAwesome.info_circle}}"
+                        FontFamily="{StaticResource Key=FontAwesomeRegular}"
+                        TextColor="White" 
+                        FontSize="35" 
+                        Margin="0,0,10,0"/>
+
+                <Label TextColor="White"
+                        Grid.Column="1"
+                        Text="{Binding Path=Message}"
+                        VerticalTextAlignment="Center"
+                        FontSize="18"/>
+            </Grid>
+        </Frame>
+    </controls:EmptyControl.Content>
+</controls:EmptyControl>

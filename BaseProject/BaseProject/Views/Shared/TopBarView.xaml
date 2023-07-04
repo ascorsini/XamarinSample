@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:TopBarControl xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                        xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+                        xmlns:controls="clr-namespace:BaseProject.Bibliotecas.Controls"
+                        xmlns:extensions="clr-namespace:BaseProject.Bibliotecas.Extensions"
+                        mc:Ignorable="d"
+                        x:Class="BaseProject.Views.Shared.TopBarView"
+                        Padding="16,42,16,0"
+                        x:Name="_this">
+
+    <controls:TopBarControl.Content>
+        <Grid BindingContext="{x:Reference Name=_this}"
+              ColumnDefinitions="Auto, *, Auto"
+              RowDefinitions="Auto">
+            
+            <Frame Padding="0"
+                   HasShadow="False"
+                   IsVisible="{Binding Path=HasBackButton}"
+                   CornerRadius="26">
+                <StackLayout Padding="0" 
+                             Spacing="0"
+                             xe:TouchEffect.Color="White"
+                             xe:Commands.Tap="{Binding Path=CommandVoltar}" >
+                    <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.back_button.png}"
+                           WidthRequest="52"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="0"
+                   HasShadow="False"
+                   Grid.Column="2"
+                   IsVisible="{Binding Path=HasCloseButton}"
+                   CornerRadius="26">
+                <StackLayout Padding="0" 
+                             Spacing="0"
+                             xe:TouchEffect.Color="White"
+                             xe:Commands.Tap="{Binding Path=CommandFechar}" >
+                    <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.close.png}"
+                           WidthRequest="30"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </controls:TopBarControl.Content>
+</controls:TopBarControl>

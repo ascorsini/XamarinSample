@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:extensions="clr-namespace:BaseProject.Bibliotecas.Extensions"
+             xmlns:shared="clr-namespace:BaseProject.Views.Shared"
+             xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+             NavigationPage.HasNavigationBar="False"
+             mc:Ignorable="d"
+             Visual="Material"
+             BackgroundColor="{StaticResource Key=BackgroundDefault}"
+             x:Class="BaseProject.Views.HomePageVazia">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid Opacity="{Binding Path=IsBusy, Converter={StaticResource Key=loadingConverter}}"
+                  RowDefinitions="*, Auto"
+                  ColumnDefinitions="*"
+                  VerticalOptions="FillAndExpand">
+                <ScrollView>
+                    <Grid>
+                        <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.bg_header.png}"
+                               VerticalOptions="Start"
+                               HorizontalOptions="FillAndExpand"
+                               HeightRequest="250"
+                               Aspect="Fill"/>
+                        <StackLayout VerticalOptions="FillAndExpand">
+                            <Grid Padding="16,42,16,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.menu.png}"
+                                       WidthRequest="34">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=cmdNavegar}"
+                                                              CommandParameter="MenuPage"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.account_circle.png}"
+                                       Grid.Column="2"
+                                       WidthRequest="34"/>
+                            </Grid>
+
+                            <StackLayout Spacing="16"
+                                            VerticalOptions="FillAndExpand" 
+                                            Padding="16">
+                                <Frame Padding="16">
+                                    <StackLayout>
+                                        <gauge:SfCircularGauge HeightRequest="200">
+                                            <gauge:SfCircularGauge.Annotations >
+                                                <gauge:GaugeAnnotation Angle="270" Offset="0">
+                                                    <gauge:GaugeAnnotation.View>
+                                                        <StackLayout>
+                                                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.happy_face_line.png}"
+                                                                    HeightRequest="40" />
+                                                            <Label Text="R$00,00"
+                                                                    HorizontalOptions="CenterAndExpand"
+                                                                    Style="{StaticResource Key=LabelBold18}"/>
+                                                            <Label Text="dívida total"
+                                                                    HorizontalOptions="CenterAndExpand"
+                                                                    Style="{StaticResource Key=LabelRegular14}"/>
+                                                        </StackLayout>
+                                                    </gauge:GaugeAnnotation.View>
+                                                </gauge:GaugeAnnotation>
+                                            </gauge:SfCircularGauge.Annotations>
+                                            <gauge:SfCircularGauge.Scales>
+                                                <gauge:Scale  ShowLabels="False"
+                                                                ShowTicks="False"                                                          
+                                                                RimThickness="10" 
+                                                                RadiusFactor="1"
+                                                                RimColor="#E9E9E9"
+                                                                StartAngle="110"
+                                                                SweepAngle="360"
+                                                                StartValue="0"
+                                                                EndValue="100" 
+                                                                Interval="1">
+                                                    <!--<gauge:Scale.Pointers>-->
+                                                        <!--<gauge:RangePointer Value="89" 
+                                                                            Offset="1" 
+                                                                            Thickness="10"
+                                                                            Color="#7E879D"/>
+                                                        <gauge:RangePointer Value="80" 
+                                                                            Offset="1" 
+                                                                            Thickness="10"
+                                                                            Color="#FF9C96"/>
+                                                        <gauge:RangePointer Value="60" 
+                                                                            Offset="1" 
+                                                                            Thickness="10"
+                                                                            Color="#FDF28D"/>
+                                                        <gauge:RangePointer Value="50" 
+                                                                            Offset="1" 
+                                                                            Thickness="10"-->                                                                    
+                                                                            <!--Color="#BA93CD"/>-->
+                                                       <!--<gauge:RangePointer Value="20" 
+                                                                            Offset="1" 
+                                                                            Thickness="15"
+                                                                            RangeCap="Both" 
+                                                                            Color="#FF9C96"/>
+                                                        <gauge:RangePointer Value="10" 
+                                                                            Offset="1" 
+                                                                            Thickness="15"
+                                                                            RangeCap="Both" 
+                                                                            Color="#7E879D"/>-->
+                                                    <!--</gauge:Scale.Pointers>-->
+                                                </gauge:Scale>
+                                            </gauge:SfCircularGauge.Scales>
+                                        </gauge:SfCircularGauge>
+
+                                        <BoxView HeightRequest="1"
+                                                    Margin="0,30,0,10"
+                                                    BackgroundColor="{StaticResource Key=Black05}"/>
+
+                                        <Label Text="Parabéns! Você quitou todas as suas dívidas!"
+                                                Grid.Row="1"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource Key=LabelBold14}"/>
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame Padding="16"
+                                        WidthRequest="320">
+                                    <StackLayout>
+                                        <Grid Grid.Row="1" 
+                                                ColumnDefinitions="Auto, *, Auto">
+                                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.users_solid_50.png}"
+                                                    WidthRequest="16"/>
+                                            <Label Text="Amigos que me ajudam"
+                                                    Grid.Column="1"
+                                                    Style="{StaticResource Key=LabelBold14}"/>
+                                            <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.angle_line.png}"
+                                                    Grid.Column="2"
+                                                    WidthRequest="18"/>
+                                        </Grid>
+                                        
+                                        <BoxView HeightRequest="1"
+                                                    Margin="0,10,0,10"
+                                                    BackgroundColor="{StaticResource Key=Black05}"/>
+
+                                        <Label Style="{StaticResource Key=LabelBold14}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="Você ainda não tem nenhuma meta a alcançar, " />
+                                                        <Span Text="&#10;faça uma quitação agora!" 
+                                                              TextColor="{StaticResource Key=SecondaryColor}"
+                                                              xe:Commands.Tap="{Binding Path=cmdAbrirModal}"
+                                                              xe:Commands.TapParameter="SimularQuitacao.SimularQuitacaoPage"
+                                                        />
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=cmdAbrirModal}"
+                                                                      CommandParameter="SimularQuitacao.SimularQuitacaoPage"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame Padding="16">
+                                    <StackLayout>
+                                        <Grid RowDefinitions="Auto, Auto"
+                                                ColumnDefinitions="*, Auto">
+                                            <Label Text="INDICAÇÕES"
+                                                    Style="{StaticResource Key=LabelBold12}"
+                                                    TextColor="{StaticResource Key=Black30}"/>
+
+                                            <Grid Grid.Row="1" 
+                                                    ColumnDefinitions="Auto, *">
+                                                <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.success_standard_solid.png}"
+                                                        WidthRequest="16"/>
+                                                <Label Text="Aceitas"
+                                                        Grid.Column="1"
+                                                        Style="{StaticResource Key=LabelBold14}"/>
+                                            </Grid>
+
+
+                                            <StackLayout Grid.Column="1" 
+                                                            VerticalOptions="Center"
+                                                            Grid.RowSpan="2">
+                                                <Button Text="Ver detalhes" 
+                                                        HeightRequest="30"
+                                                        Padding="0"
+                                                        Style="{StaticResource Key=ButtonSecondarySolidMini}"/>
+                                            </StackLayout>
+
+                                        </Grid>
+                                        <BoxView HeightRequest="1"
+                                                    Margin="0,10,0,10"
+                                                    BackgroundColor="{StaticResource Key=Black05}"/>
+                                        <Label Style="{StaticResource Key=LabelBold14}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="Você ainda não fez indicações, " />
+                                                        <Span Text="faça uma agora!" 
+                                                                TextColor="{StaticResource Key=SecondaryColor}" />
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=cmdAbrirModal}"
+                                                                      CommandParameter="IndicarAmigos.IndicarAmigosPage"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame Padding="16">
+                                    <StackLayout>
+                                        <Label Text="Descubra mais"
+                                                Style="{StaticResource Key=LabelBold14}"/>
+                                        <ScrollView Orientation="Horizontal">
+                                            <StackLayout Orientation="Horizontal"
+                                                            Spacing="20"
+                                                            Padding="0,0,0,10">
+                                                <Frame BackgroundColor="{StaticResource Key=PrimaryColor70}">
+                                                    <Grid ColumnDefinitions="Auto, Auto" 
+                                                            Padding="0,0,30,0"
+                                                            ColumnSpacing="10">
+                                                        <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.info_standard_solid.png}"
+                                                                HeightRequest="30"/>
+                                                        <Label Text="Surgiu alguma dúvida?&#10;Acesse nosso FAQ"
+                                                                Grid.Column="1"
+                                                                VerticalOptions="Center"
+                                                                Style="{StaticResource Key=LabelBold14}"
+                                                                TextColor="{StaticResource Key=White}"/>
+                                                    </Grid>
+                                                </Frame>
+
+                                                <Frame BackgroundColor="{StaticResource Key=SecondaryColor90}">
+                                                    <Grid ColumnDefinitions="Auto, Auto" 
+                                                            ColumnSpacing="10"
+                                                            Padding="0,0,30,0">
+                                                        <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.help_bold_ligth.png}"
+                                                                HeightRequest="30"/>
+                                                        <Label Text="Entenda como funciona&#10;a BaseProject"
+                                                                Grid.Column="1"
+                                                                VerticalOptions="Center"
+                                                                Style="{StaticResource Key=LabelBold14}"
+                                                                TextColor="{StaticResource Key=White}"/>
+                                                    </Grid>
+                                                </Frame>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+
+                <ScrollView Orientation="Horizontal"
+                            Grid.Row="1"
+                            Padding="16,6">
+                    <StackLayout Orientation="Horizontal"
+                                    Spacing="15">
+                        <Grid RowDefinitions="Auto"
+                                ColumnDefinitions="100">
+                            <Frame Padding="0">
+                                <Frame.Background>
+                                    <LinearGradientBrush EndPoint="1,0">
+                                        <GradientStop Color="{StaticResource Key=GradientPrimary}" Offset="0.1" />
+                                        <GradientStop Color="{StaticResource Key=GradientSecondary}" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+                                <StackLayout Spacing="15"
+                                                Padding="10"
+                                                xe:TouchEffect.Color="{StaticResource Key=White}"
+                                                xe:Commands.Tap="{Binding Path=cmdAbrirModal}"
+                                                xe:Commands.TapParameter="SimularQuitacao.SimularQuitacaoPage">
+                                    <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.dollar_line.png}"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="25"/>
+                                    <Label Text="Simular quitação"
+                                            Style="{StaticResource Key=LabelBold14}"
+                                            TextColor="{StaticResource Key=White}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                                ColumnDefinitions="100">
+                            <Frame Padding="10"
+                                    BackgroundColor="{StaticResource Key=White}">
+                                <StackLayout Spacing="15"
+                                                xe:Commands.Tap="{Binding Path=cmdAbrirModal}"
+                                                xe:Commands.TapParameter="UploadCupom.UploadCupomPage">
+                                    <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.upload_cloud_line.png}"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="25"/>
+                                    <Label Text="Upload de documentos"
+                                            Style="{StaticResource Key=LabelSemiBold14}"
+                                            TextColor="{StaticResource Key=PrimaryColor80}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                                ColumnDefinitions="100">
+                            <Frame Padding="10"
+                                    BackgroundColor="{StaticResource Key=White}">
+                                <StackLayout Spacing="15"
+                                                xe:Commands.Tap="{Binding Path=cmdNavegar}"
+                                                xe:Commands.TapParameter="MinhasDividas.MinhasDividasPage">
+                                    <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.coin_bag_line.png}"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="25"/>
+                                    <Label Text="Minhas dívidas"
+                                            Style="{StaticResource Key=LabelSemiBold14}"
+                                            TextColor="{StaticResource Key=PrimaryColor80}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                                ColumnDefinitions="100">
+                            <Frame Padding="10"
+                                    BackgroundColor="{StaticResource Key=White}">
+                                <StackLayout Spacing="15"
+                                                xe:Commands.Tap="{Binding Path=cmdAbrirModal}"
+                                                xe:Commands.TapParameter="IndicarAmigos.IndicarAmigosPage">
+                                    <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.users_line.png}"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="25"/>
+                                    <Label Text="Indicar amigos"
+                                            Style="{StaticResource Key=LabelSemiBold14}"
+                                            TextColor="{StaticResource Key=PrimaryColor80}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                        <Grid RowDefinitions="Auto"
+                              ColumnDefinitions="100">
+                            <Frame Padding="10"
+                                   BackgroundColor="{StaticResource Key=White}">
+                                <StackLayout Spacing="15"
+                                             xe:Commands.Tap="{Binding Path=cmdAbrirModal}"
+                                             xe:Commands.TapParameter="IndicarLoja.IndicarLojaPage">
+                                    <Image Source="{extensions:ImageResource Source=BaseProject.Content.Images.Icones.store_line.png}"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="25"/>
+                                    <Label Text="Indicar uma loja"
+                                            Style="{StaticResource Key=LabelSemiBold14}"
+                                            TextColor="{StaticResource Key=PrimaryColor80}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <shared:LoadingView IsBusy="{Binding Path=IsBusy}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:TopBarSecondaryControl xmlns="http://xamarin.com/schemas/2014/forms"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                                 xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+                                 xmlns:controls="clr-namespace:BaseProject.Bibliotecas.Controls"  
+                                 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                                 mc:Ignorable="d"
+                                 x:Class="BaseProject.Views.Shared.TopBarSecondaryView"
+                                 x:Name="_this">
+
+    <controls:TopBarSecondaryControl.Content>
+        <yummy:PancakeView BackgroundColor="{StaticResource Key=White}" 
+                           CornerRadius="0,0, 12, 12" 
+                           Padding="16,42,16,16"
+                           
+                           HorizontalOptions="FillAndExpand">
+            <yummy:PancakeView.Shadow>
+                <yummy:DropShadow Color="{StaticResource BackgroundDefault}"
+                                  BlurRadius="5"
+                                  Offset="10,10" />
+            </yummy:PancakeView.Shadow>
+            <Grid BindingContext="{x:Reference Name=_this}" 
+                  ColumnDefinitions="Auto, *, Auto"
+                  RowDefinitions="Auto">
+                <Frame Padding="0"
+                       HasShadow="False"
+                       IsVisible="{Binding Path=HasIconLeft}"
+                       VerticalOptions="Center"
+                       Margin="0,0,12,0"
+                       CornerRadius="0">
+                    <StackLayout Padding="0" 
+                                 Spacing="0"
+                                 xe:TouchEffect.Color="White"
+                                 xe:Commands.Tap="{Binding Path=IconLeftCommand}" >
+                        <Image Source="{Binding Path=IconLeft}"
+                               WidthRequest="{Binding Path=IconLeftWidth}"/>
+                    </StackLayout>
+                </Frame>
+
+                <Label Text="{Binding Path=Title}"
+                       Grid.Column="1"
+                       VerticalOptions="Center"
+                       Style="{StaticResource Key=LabelBold22}"/>
+
+                <Frame Padding="0"
+                       Grid.Column="2"
+                       HasShadow="False"
+                       VerticalOptions="Center"
+                       IsVisible="{Binding Path=HasIconRight}"
+                       CornerRadius="0">
+                    <StackLayout Padding="0" 
+                                 Spacing="0"
+                                 xe:TouchEffect.Color="White"
+                                 xe:Commands.Tap="{Binding Path=IconRightCommand}" >
+                        <Image Source="{Binding Path=IconRight}"
+                               WidthRequest="{Binding Path=IconRightWidth}"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </yummy:PancakeView>
+    </controls:TopBarSecondaryControl.Content>
+</controls:TopBarSecondaryControl>
